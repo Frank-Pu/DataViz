@@ -190,8 +190,8 @@ def create_chart(economy, year_range):
         (alt.datum['Year'] >= year_range[0]) &
         (alt.datum['Year'] <= year_range[1])
     ).properties(
-        width=800,
-        height=600
+        width=700,
+        height=500
     ).interactive()
 
     return chart
@@ -199,14 +199,12 @@ def create_chart(economy, year_range):
 st.write('Many developed countries have experienced a clear process of deindustrialization and have introduced many policies to promote reindustrialization. After 2005, international trade has undergone drastic changes. The reindustrialization process of developed countries is interrupted and driven by many events like global crisis, regional cooperation, local conflict and tariff policy. ')
 
 # Set up the Streamlit interface
-# st.title('International Trade Dependency ')
-
 st.markdown("""
 <p style='font-size: 12px'>
 Overall economic growth can boost both imports and exports. To eliminate the impact of absolute value changes and better observe shifts in the proportions of imports and exports, the trade dependency ratio has been calculated.</p>
 """, unsafe_allow_html=True)
 
-sub_title111 = '<p style="font-family:Arial Bold Italic; color:black; font-size: 20px;">A Tale of Two Continents: USA Progress vs European Struggles</p>'
+sub_title111 = '<p style="font-family:Arial Bold Italic; color:black; font-size: 20px;">A Tale of Two Continents: Disparities in the pace and success across various nations</p>'
 st.markdown(sub_title111, unsafe_allow_html=True)
 
 year_range = st.slider(
@@ -216,18 +214,54 @@ year_range = st.slider(
     (int(bubble_data['Year'].min()), int(bubble_data['Year'].max()))
 )
 
+st.write("The United States stands out as a leader in reindustrialization, having achieved substantial milestones. The data highlights the strategic initiatives and robust industrial policies that have catalyzed this success, positioning the U.S. at the forefront of reindustrialization efforts.")
+
 # Interaction widgets
-selected_economy = st.selectbox(
-    'Select Reporting Economy',
-    options=bubble_data['Reporting Economy'].unique(),
-    index=list(bubble_data['Reporting Economy'].unique()).index('United States of America')
-)
+col1, col2 = st.columns(2)
 
-st.write('It shows that the reindustrialization of the United States has achieved a phased success, that is, while the international competitiveness of high-tech products has continued to improve, its dependence on primary industrial products and light industrial products has been reduced in a high extent.')
+with col1:
+    selected_economy_1 = st.selectbox(
+        'Select Reporting Economy',
+        options=bubble_data['Reporting Economy'].unique(),
+        index=list(bubble_data['Reporting Economy'].unique()).index('United States of America'),
+        key='selected_economy_1'
+    )
+    resulting_chart_1 = create_chart(selected_economy_1, year_range)
+    st.altair_chart(resulting_chart_1)
 
-# Update chart based on user input
-resulting_chart = create_chart(selected_economy, year_range)
-st.altair_chart(resulting_chart)
-st.markdown(sub_title22, unsafe_allow_html=True)
+with col2:
+    selected_economy_2 = st.selectbox(
+        'Select Reporting Economy',
+        options=bubble_data['Reporting Economy'].unique(),
+        index=list(bubble_data['Reporting Economy'].unique()).index('Germany'),
+        key='selected_economy_2'
+    )
+    resulting_chart_2 = create_chart(selected_economy_2, year_range)
+    st.altair_chart(resulting_chart_2)
 
-st.write("In the journey of reindustrialization, the United States has consistently made stable progress, achieving notable milestones. In contrast, Europe's path towards reindustrialization has encountered significant challenges, including high energy prices, geopolitical crises, and protective policies from allies. These hurdles have so far prevented Europe from making substantial advancements, highlighting the divergent outcomes in the global industrial landscape.")
+
+# st.write("Europe: A Diverse Landscape of Success") 
+st.write("Within Europe, the reindustrialization landscape is fragmented, exhibiting significant variances in achievements among key nations. France has demonstrated notable effectiveness in its reindustrialization endeavors, driven by concerted policy efforts and innovative industrial solutions. In contrast, Germany shows minimal progress, with the scatter plot revealing a stark stagnation in its reindustrialization process. This divergence underscores the complex interplay of economic strategies and industrial capacities that influence reindustrialization outcomes.")
+
+# Interaction widgets
+col3, col4 = st.columns(2)
+
+with col3:
+    selected_economy_3 = st.selectbox(
+        'Select Reporting Economy',
+        options=bubble_data['Reporting Economy'].unique(),
+        index=list(bubble_data['Reporting Economy'].unique()).index('France'),
+        key='selected_economy_3'
+    )
+    resulting_chart_3 = create_chart(selected_economy_3, year_range)
+    st.altair_chart(resulting_chart_3)
+
+with col4:
+    selected_economy_4 = st.selectbox(
+        'Select Reporting Economy',
+        options=bubble_data['Reporting Economy'].unique(),
+        index=list(bubble_data['Reporting Economy'].unique()).index('Germany'),
+        key='selected_economy_4'
+    )
+    resulting_chart_4 = create_chart(selected_economy_4, year_range)
+    st.altair_chart(resulting_chart_4)
