@@ -119,6 +119,7 @@ animation = px.scatter(
     height=650,
     size_max=100
 )
+animation.update_layout(showlegend=False)
 
 # Plot the chart in Streamlit
 st.plotly_chart(animation, use_container_width=True)
