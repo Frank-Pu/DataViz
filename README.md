@@ -8,8 +8,7 @@
 
 **Members**: Qihang Pu, Wenxin Wu, Nicolas Reboullet, Hongyi Zhao 
 
-——————————————————————————————————————————————————————
-
+—————————————————————————————————————————————————
 
 **Presentation Video Link** : https://www.youtube.com/watch?v=PMRV19XcwJs
 
