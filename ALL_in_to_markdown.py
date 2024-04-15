@@ -94,7 +94,7 @@ export_long_filtered_df['LogExportValue'] = np.log(export_long_filtered_df['Expo
 
 # Titles and subtitles using Markdown (adapt titles as needed)
 #animation_title = '<p style="font-family:Arial Bold; color:black; font-size: 30px;">Five major economies exports by sector over time</p>'
-sub_title1 = '<p style="font-family:Arial Bold Italic; color:black; font-size: 20px;">During recent decades, the share of industrial output in national GDP has been declining year by year in 5 major developed countries. The value are in Million USD</p>'
+sub_title1 = '<p style="font-family:Arial Bold Italic; color:black; font-size: 20px;">During recent decades, the share of industrial output in national GDP has been declining year by year in 5 major developed countries.</p>'
 sub_title2 = '<p style="text-align: right; font-family: Arial Bold Italic; color: black; font-size: 15px;">Source: https://stats.wto.org/</p>'
 
 # st.markdown(animation_title, unsafe_allow_html=True)
@@ -109,7 +109,7 @@ animation = px.scatter(
     y="LogExportValue",
     size="ExportValue",
     color="CustomColor",  # Use the custom color for differentiation
-    title="Log of World Exports by Sector Over Time for Five Major Economies",
+    title="World Exports by Sector Over Time for Five Major Economies (in million of $)",
     labels={"LogExportValue": "Log of Export Value", "ExportValue": "Export Value"},
     log_x=False,  # log_x is now False because we've already transformed the value manually
     range_y=[export_long_filtered_df["LogExportValue"].min(), export_long_filtered_df["LogExportValue"].max()],
@@ -155,7 +155,7 @@ import_animation = px.line(
     y="LogImportValue",
     color="Reporting Economy",
     line_dash="SectorDescription",  # Different dashes for sectors
-    title="Log of World Imports by Sector Over Time for Five Major Economies",
+    title="World Imports by Sector Over Time for Five Major Economies (in million of $)",
     labels={"LogImportValue": "Log of Import Value", "ImportValue": "Import Value", "Year": "Year"},
     hover_name="Reporting Economy",
     hover_data={"ImportValue": ':,', "SectorDescription": True},
